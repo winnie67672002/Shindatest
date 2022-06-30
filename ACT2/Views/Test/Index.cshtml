@@ -1,0 +1,70 @@
+﻿@model IEnumerable<ACT2.Models.TblSignUpList>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<form>
+    <p>
+        <a asp-action="Create">Create New</a>
+        Name:<input name="queryName">
+        Phone:<input name="queryPhone">
+        Activity: 
+               <select name="queeryActive" class="control-label">
+               <option value="0">請選擇...</option>
+                 @foreach (var item in ACT2.Utility.DDL.GetActiveItem() as List<TblActiveItem>)
+                {
+                    <option value="@item.CItemName">@item.CItemName</option>
+                }
+                </select>
+       
+         <button type="submit" class="btn btn-primary"> search </button>
+            
+    </p>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CMobile)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CCreateDt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cItemName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CMobile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CCreateDt)
+            </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.cItemName)
+            </td>
+        
+        </tr>
+}
+    </tbody>
+</table>
